@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaints Portal </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://w.wallhaven.cc/full/ox/wallhaven-oxq8gl.jpg'); /* Background i */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        /*white transparency */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0); /* White with 50% transparency */
+            z-index: -1; /* Ensure the overlay is behind content */
+        }
+        .right {
+            text-align: right;
+            margin-bottom: 1px;
+        }
+        header {
+            background-color: #fff;
+            padding: 4px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255,255,255, 0.6);    
+        }
+        .header-left img {
+            width: 50px;
+            height: auto;
+        }
+        .header-right a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+        .main-header {
+            background-color: #f0f0f0;
+            height: 120px;
+            text-align: center;
+            padding: 4px 20px;
+            background-color: rgba(255, 255, 255, 0.6)
+        }
+        /* New styles for image slider */
+        .slider {
+            width: 300px;
+            height: 230px;
+            overflow: hidden;
+            border: 2px solid #ccc;
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        .slider img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .slider img.active {
+            opacity: 1;
+        }
+        /* For the second slider */
+        .slider-two {
+            width: 1328px;
+            height: 230px;
+            overflow: hidden;
+            border: 2px solid #ccc;
+            position: relative;
+        }
+        .slider-two img {
+            width: 1338px;
+            height: 230px;
+            position: absolute;
+            top: 100%%;
+            left: 0;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+        .slider-two img.active {
+            opacity: 1;
+        }
+        /* Add necessary spacing */
+        .sliders-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            padding: 10px;
+        }
+        .main-header img {
+            height: 80px;
+            width: auto;
+            margin-bottom: 10px;
+        }
+        .main-header h1 {
+            margin: 10px 0; 
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 10px;
+            background-color: rgba(220, 100, 0);
+            border-top: 2px solid #f9b500;
+            border-bottom: 2px solid #f9b500;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+        }
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            text-align: center;   
+        }
+        .options div {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 150px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .options div:hover {
+            background-color: #e0e0e0;
+        }
+        .options img {
+            width: 50px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 30px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .lang-btn {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            color: #333;
+            padding: 8px 15px;
+            margin-left: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .lang-btn:hover {
+            background-color: #e0e0e0;
+        }
+        .lang-btn {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            color: #333;
+            padding: 8px 15px;
+            margin-left: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .lang-btn:hover {
+            background-color: #e0e0e0;
+        }
+        .lang-btn {
+            background-color: #4CAF50; /* Green background */
+            border: none;
+            color: white;
+            padding: 1px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.2s, background-color 0.3s; /* Smooth hover and click effects */
+          }
+          /* Hover effect */
+          .lang-btn:hover {
+            background-color: #333; /* Darker green on hover */
+            transform: scale(1.05); /* Slightly larger */
+          }
+          /* Click effect */
+          .lang-btn:active {
+            background-color: #333; /* Even darker green on click */
+            transform: scale(0.95); /* Slightly smaller on click */
+            box-shadow: 0 5px #666;
+          }
+          .right{
+            padding: -40px;
+          }
+          .social-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+        }
+        
+        .social-icons a {
+            margin: 0 10px;
+        }
+        
+        .icon {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s;
+        }
+        
+        .icon:hover {
+            transform: scale(1.1); /* Slight zoom on hover */
+        }
+        .social-icons {
+            text-align: center; /* To center the icons */
+        }
+        
+        .icon {
+            margin: 0 15px; /* Adds space of 15px between icons */
+            width: 40px;     /* Adjust icon size */
+            height: 40px;
+            vertical-align: middle; /* Aligns icons vertically in the middle */
+        }
+        
+    </style>
+    <script>
+         //first slider
+         let currentSlide = 0;
+         let images;
+         window.onload = function () {
+             images = document.querySelectorAll('.slider img');
+             images[currentSlide].classList.add('active');
+             setInterval(slideImages, 2000);
+         }
+         function slideImages() {
+             images[currentSlide].classList.remove('active');
+             currentSlide = (currentSlide + 1) % images.length;
+             images[currentSlide].classList.add('active');
+         }
+         //second slider
+         let currentSlideTwo = 0;
+         let imagesTwo;
+
+         window.onload = function () {
+             imagesTwo = document.querySelectorAll('.slider-two img');
+             imagesTwo[currentSlideTwo].classList.add('active');
+             setInterval(slideImagesTwo, 2000);
+        }
+         function slideImagesTwo() {
+             imagesTwo[currentSlideTwo].classList.remove('active');
+             currentSlideTwo = (currentSlideTwo + 1) % imagesTwo.length;
+             imagesTwo[currentSlideTwo].classList.add('active');
+        }
+
+
+        
+            // Define translations for each language
+            const translations = {
+                en: {
+                    title: "PUBLIC COMPLAINTS PORTAL",
+                    subtitle: "(use the web for complaint & feedback)",
+                    marqueeText: "WEBSITE TO LODGE A COMPLAINT AND GIVE FEEDBACK",
+                    officerLogin: "Officer Login",
+                    feedback: "Feedback Form",
+                    postGrievanceText: "Lodge a<br>Complaint",
+                    footerText: "©2024 MITHUN KR, CSE, GEC HASSAN",
+                    helpline: "Helpline: 139 (Toll-Free)"
+                },
+                ka: {
+                    title: "ಸಾರ್ವಜನಿಕ ದೂರುಗಳ ಪೋರ್ಟಲ್",
+                    subtitle: "(ದೂರು ಮತ್ತು ಪ್ರತಿಕ್ರಿಯೆ ಸಲ್ಲಿಸಲು ವೆಬ್ ಬಳಸಿ)",
+                    marqueeText: "ದೂರು ಸಲ್ಲಿಸಲು ಮತ್ತು ಪ್ರತಿಕ್ರಿಯೆ ನೀಡಲು ವೆಬ್ಸೈಟ್",
+                    officerLogin: "ಅಧಿಕಾರಿ ಲಾಗಿನ್",
+                    feedback: "ಪ್ರತಿಕ್ರಿಯಾ ಫಾರ್ಮ್",
+                    postGrievanceText: "ದೂರು<br>ಸಲ್ಲಿಸು",
+                    footerText: "©2024 ಮಿಥುನ್ ಕೆಆರ್, ಸಿಎಸ್ಇ, ಜಿಇಸಿ ಹಾಸನ್",
+                    helpline: "ಹೆಲ್ಪ್ಲೈನ್: 139 (ಟೋಲ್-ಫ್ರೀ)"
+                },
+                hi: {
+                    title: "सार्वजनिक शिकायत पोर्टल",
+                    subtitle: "(शिकायत और प्रतिक्रिया के लिए वेब का उपयोग करें)",
+                    marqueeText: "शिकायत दर्ज करने और प्रतिक्रिया देने के लिए वेबसाइट",
+                    officerLogin: "अधिकारी लॉगिन",
+                    feedback: "प्रतिक्रिया फॉर्म",
+                    postGrievanceText: "शिकायत<br>दर्ज करें",
+                    footerText: "©2024 मिथुन केआर, सीएसई, जीईसी हसन",
+                    helpline: "हेल्पलाइन: 139 (टोल-फ्री)"
+                }
+            };
+    
+            // Function to change the language of the page
+            function changeLanguage(language) {
+                // Find all elements with the data-translate attribute
+                document.querySelectorAll('[data-translate]').forEach(function(element) {
+                    // Get the key from the element's data-translate attribute
+                    const key = element.getAttribute('data-translate');
+                    // Set the innerHTML to the appropriate translation
+                    element.innerHTML = translations[language][key];
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <div class="right">
+            <button class="lang-btn" onclick="changeLanguage('en')">English</button>
+            <button class="lang-btn" onclick="changeLanguage('ka')">ಕನ್ನಡ</button>
+            <button class="lang-btn" onclick="changeLanguage('hi')">हिन्दी</button>
+        </div>
+        <header>
+            <div class="header-left">
+                <img src="https://t3.ftcdn.net/jpg/05/20/68/54/360_F_520685437_FuWJXbq7SHOOMugB1grPu3oakwdB8FNW.jpg" 
+                    alt="comp 1" 
+                    style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+            </div>
+            <div class="ind">
+                <h1 id="til" data-translate="title">PUBLIC COMPLAINTS PORTAL</h1>
+            </div>
+            <div class="header-right">
+                <img src="https://blog.ipleaders.in/wp-content/uploads/2016/08/before-you-file-a-complaint.jpg"
+                alt="comp 2" 
+                    style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+            </div>
+        </header>
+        <section class="main-header">
+            <h1 id="title" data-translate="title">PUBLIC COMPLAINTS PORTAL</h1>
+            <h4 id="subtitle" data-translate="subtitle">(use the web for complaint & feedback)</h4>
+            <mark><marquee data-translate="marqueeText">WEBSITE TO LODGE A COMPLAINT AND GIVE FEEDBACK</marquee></mark>
+        </section>
+        <nav class="nav-links">
+            <a id="officerlogin" data-translate="officerLogin" href="officerlogin" onclick="navigateTo('officerlogin')">Officer Login</a>
+            <a id="feedback" data-translate="feedback" href="feedback" onclick="navigateTo('feedback')">Feedback Form</a>
+        </nav>
+        <div class="slider-two">
+        <img src="https://www.superoffice.com/globalassets/blog/2013/5/customer-complaints.jpg?v=49983d"
+        alt="slide 1" style="width: 1328px; height: 230px;">
+        <img src="https://www.selectsupportpartnerships.com/wp-content/uploads/2022/03/compliments-and-complaints.jpg"
+        alt="slide 2" style="width: 1328px; height: 230px;">
+        <img src="https://jeffersonmaguire.co.uk/wp-content/uploads/2022/03/feedback.jpg"
+        alt="slide 3" style="width: 1328px; height: 230px;">
+        <img src="https://cdn.prod.website-files.com/64022de562115a8189fe542a/663b9b70ff53a383fc50eea2_Feedback-Culture-Exploring-Its-Purpose-Benefits-And-How-To-Build-One.jpg"
+        alt="slide 4" style="width: 1328px; height: 230px;">
+        <img src="https://www.ezeeabsolute.com/blog/wp-content/uploads/2020/03/unhappy-customer.png"
+        alt="slide 5" style="width: 1328px; height: 230px;">
+        <img src="https://lh6.googleusercontent.com/ma9yEDgHgJ7AQ18onHsO0MGyqSH6Jn3b7qowi3rsZS179-kn1Vuu8-ILCNfHgXn6hlAP6Yuolg6qq3_Dtx5c7RHQlO7yBCizIHvD3tUAZjgzJtF0djRnIGRrFwCv0ZqUcXsXkSAiOLfr8YEGD1bWgCs"
+        alt="slide 5" style="width: 1328px; height: 230px;">    
+        <img src="https://i.ytimg.com/vi/bfgq_khq3-k/maxresdefault.jpg"
+        alt="slide 5" style="width: 1328px; height: 230px;">
+    </div>
+    <nav class="options">
+        <a id="submit_complaint" href="submit_complaint" onclick="navigateTo('submit_complaint')">
+            <div>
+                <img src="https://thumbs.dreamstime.com/b/icon-complaint-grievance-complaint-316716992.jpg">
+                <p id="post-grievance-text" data-translate="postGrievanceText">Lodge a<br>Complaint</p>
+            </div>
+        </a>
+    </nav>
+    <br>
+    <hr>
+    <div class="social-icons">
+    
+        <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" class="icon" style="border-radius: 50%;">
+    
+    
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="X" class="icon" style="border-radius: 40%;">
+  
+    
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" class="icon" style="border-radius: 60%;">
+  
+</div><hr>
+<footer class="footer">
+    <p id="footer-text" data-translate="footerText">©2024 MITHUN KR, CSE, GEC HASSAN</p>
+    <p id="helpline" data-translate="helpline">Helpline: 139 (Toll-Free)</p>
+</footer>
+
+
+</body>
+</html>

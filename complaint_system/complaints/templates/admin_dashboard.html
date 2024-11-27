@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>complaints Lists</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('https://img.freepik.com/free-photo/abstract-extruded-voronoi-blocks-background-minimal-light-clean-corporate-wall-3d-geometric-surface-illustration-polygonal-elements-displacement_1217-2503.jpg');
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #28a745;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        td button {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .resolved {
+            background-color: #28a745;
+        }
+
+        .resolved:hover {
+            background-color: #218838;
+        }
+
+        .pending {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .pending:hover {
+            background-color: #e0a800;
+        }
+
+        .view-detail {
+            background-color: #007bff;
+        }
+
+        .view-detail:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            table, th, td {
+                display: block;
+                width: 100%;
+            }
+
+            tr {
+                margin-bottom: 15px;
+                border-bottom: 2px solid #ddd;
+                display: block;
+            }
+
+            th, td {
+                padding: 10px;
+                text-align: right;
+            }
+
+            th {
+                text-align: left;
+                border-bottom: none;
+            }
+
+            td {
+                border-bottom: none;
+            }
+
+            td::before {
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+            }
+
+            td button {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
+        .header {
+            display: flex;
+            justify-content: space-between; /* Aligns elements to the sides */
+            align-items: center;            /* Vertically aligns the items */
+            background-color: #f1f1f1;      /* Background color of the header */
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        h1 {
+            margin: 0;
+            padding-left: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+        
+        .home-button {
+            background-color: #007bff; /* Button background color */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px; /* Spacing on the right side */
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .home-button:hover {
+            background-color: #0056b3; /* Darker background on hover */
+        }
+
+        .footer {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 30px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        
+    </style>
+    <script>
+        // complaint resolved 
+        function markResolved(complaintId, row) {
+            fetch(`/resolve_complaint/${complaintId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ resolved: true })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    row.style.display = 'none';
+                    alert("Complaint resolved successfully! An email has been sent.");
+                } else {
+                    alert("Error: Unable to resolve the complaint.");
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // complaint pending 
+        function markPending(row) {
+            alert("Complaint is marked as pending.");
+        }
+
+        // view complaint details
+        function viewComplaintDetail(complaintId) {
+            window.location.href = `/view_complaint/${complaintId}/`;
+        }
+         
+    </script>
+</head>
+<body>
+    <div>
+        <div class="header">
+            <center><button><h2>Admin Dashboard - Complaints</h2></button></center>
+            <a href="{% url 'home' %}" class="home-button"style=>HOME</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Complaint</th>
+                    <th>Sentiment</th>
+                    <th>Image Classification</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for complaint in complaints %}
+                <tr id="complaint-{{ complaint.id }}">
+                    <td data-label="Name">{{ complaint.name }}</td>
+                    <td data-label="Email">{{ complaint.email }}</td>
+                    <td data-label="Complaint">{{ complaint.complaint_text }}</td>
+                    <td data-label="Sentiment">{{ complaint.sentiment }}</td>
+                    <td data-label="Image Classification">{{ complaint.image_classification }}</td>
+                    <td data-label="Date">{{ complaint.created_at }}</td>
+                    <td data-label="Action">
+                        <button class="view-detail" onclick="viewComplaintDetail({{ complaint.id }})">View in Detail</button>
+                        <button class="resolved" onclick="markResolved({{ complaint.id }}, document.getElementById('complaint-{{ complaint.id }}'))">Resolved</button>
+                        <button class="pending" onclick="markPending(document.getElementById('complaint-{{ complaint.id }}'))">Pending</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="title">Submit Complaint here</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://img.freepik.com/premium-photo/abstract-geometric-blocks-3d-rendering_1108533-79266.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1727049600&semt=ais_hybrid');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.2);
+            z-index: -1;
+        }
+          
+        header {
+            background-color: rgba(255, 255, 255, 0.6);
+            padding: 4px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left img, .header-right img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 60%;
+            max-width: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            background-color: rgba(255,255,255, 0.7);
+        }
+
+        form {
+            width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="phone number"],
+        textarea {
+            width: 500px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        button {
+            width: 525px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            button {
+                font-size: 14px;
+            }
+        }
+        .home-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            width: 540px;
+            padding: 12px;
+        }
+        
+        .home-button:hover {
+            background-color: #0056b3;
+        }
+
+        .footer {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 30px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+    .right {
+        text-align: right;
+        margin-bottom: 1px;   
+    }
+    .lang-btn {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        color: #333;
+        padding: 8px 15px;
+        margin-left: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        width: 100px;
+    }
+    .lang-btn:hover {
+        background-color: #e0e0e0;
+    }
+    .lang-btn {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        color: #333;
+        padding: 8px 15px;
+        margin-left: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    .lang-btn:hover {
+        background-color: #e0e0e0;
+    }
+    .lang-btn {
+        background-color: #4CAF50; /* Green background */
+        border: none;
+        color: white;
+        padding: 1px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: transform 0.2s, background-color 0.3s; /* Smooth hover and click effects */
+      }
+      /* Hover effect */
+      .lang-btn:hover {
+        background-color: #333; /* Darker green on hover */
+        transform: scale(1.05); /* Slightly larger */
+      }
+      /* Click effect */
+      .lang-btn:active {
+        background-color: #333; /* Even darker green on click */
+        transform: scale(0.95); /* Slightly smaller on click */
+        box-shadow: 0 5px #666;
+      }
+      .right{
+        padding: -40px;
+      }
+    </style>
+    <script>
+        // Define translations for each language
+        const translations = {
+            en: {
+                title: "Submit Complaint here",
+                complaintsSystem: "COMPLAINTS SYSTEM",
+                submitYourComplaint: "Submit Your Complaint",
+                yourName: "Your Name:",
+                yourEmail: "Your Email:",
+                complaintDescription: "Complaint Description:",
+                uploadImage: "Upload Image (optional):",
+                submitComplaint: "Submit Complaint",
+                home: "HOME",
+                footerText: "©2024 MITHUN KR, CSE, GEC HASSAN",
+                helpline: "Helpline: 139 (Toll-Free)"
+            },
+            ka: {
+                title: "ಇಲ್ಲಿ ದೂರು ಸಲ್ಲಿಸಿ",
+                complaintsSystem: "ದೂರು ವ್ಯವಸ್ಥೆ",
+                submitYourComplaint: "ನಿಮ್ಮ ದೂರು ಸಲ್ಲಿಸಿ",
+                yourName: "ನಿಮ್ಮ ಹೆಸರು:",
+                yourEmail: "ನಿಮ್ಮ ಇಮೇಲ್:",
+                complaintDescription: "ದೂರಿನ ವಿವರಣೆ:",
+                uploadImage: "ಚಿತ್ರವನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ (ಐಚ್ಛಿಕ):",
+                submitComplaint: "ದೂರು ಸಲ್ಲಿಸಿ",
+                home: "ಮುಖಪುಟ",
+                footerText: "©2024 ಮಿಥುನ್ ಕೆಆರ್, ಸಿಎಸ್ಇ, ಜಿಇಸಿ ಹಾಸನ್",
+                helpline: "ಹೆಲ್ಪ್ಲೈನ್: 139 (ಟೋಲ್-ಫ್ರೀ)"
+            },
+            hi: {
+                title: "यहां शिकायत दर्ज करें",
+                complaintsSystem: "शिकायत प्रणाली",
+                submitYourComplaint: "अपनी शिकायत दर्ज करें",
+                yourName: "आपका नाम:",
+                yourEmail: "आपका ईमेल:",
+                complaintDescription: "शिकायत विवरण:",
+                uploadImage: "छवि अपलोड करें (वैकल्पिक):",
+                submitComplaint: "शिकायत दर्ज करें",
+                home: "मुख्य पृष्ठ",
+                footerText: "©2024 मिथुन केआर, सीएसई, जीईसी हसन",
+                helpline: "हेल्पलाइन: 139 (टोल-फ्री)"
+            }
+        };
+
+        // Function to change the language of the page
+        function changeLanguage(language) {
+            // Find all elements with the data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(function(element) {
+                // Get the key from the element's data-translate attribute
+                const key = element.getAttribute('data-translate');
+                // Set the innerHTML to the appropriate translation
+                element.innerHTML = translations[language][key];
+            });
+
+            // Update the document title
+            document.title = translations[language].title;
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+            alert("Thank you for your complaint. We will solve it soon!");
+            document.getElementById("complaintForm").submit();
+        }
+    </script>
+</head>
+<body>
+    <div class="right">
+        <button class="lang-btn" onclick="changeLanguage('en')">English</button>
+        <button class="lang-btn" onclick="changeLanguage('ka')">ಕನ್ನಡ</button>
+        <button class="lang-btn" onclick="changeLanguage('hi')">हिन्दी</button>
+    </div>
+    <header>
+        <div class="header-left">
+            <img src="https://t3.ftcdn.net/jpg/05/20/68/54/360_F_520685437_FuWJXbq7SHOOMugB1grPu3oakwdB8FNW.jpg" 
+                alt="comp 1" 
+                style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        </div>
+        <div class="ind">
+            <h1 id="complaintsSystem" data-translate="complaintsSystem">COMPLAINTS SYSTEM</h1>
+        </div>
+        <div class="header-right">
+            <img src="https://blog.ipleaders.in/wp-content/uploads/2016/08/before-you-file-a-complaint.jpg"
+            alt="comp 2" 
+                style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        </div>
+    </header>
+
+    <div class="container">
+        <form id="complaintForm" action="{% url 'submit_complaint' %}" method="POST" enctype="multipart/form-data" onsubmit="handleSubmit(event)">
+            {% csrf_token %}
+            <h2 id="submitYourComplaint" data-translate="submitYourComplaint">Submit Your Complaint</h2>
+
+            <label for="name" id="yourName" data-translate="yourName">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email" id="yourEmail" data-translate="yourEmail">Your Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="complaint" id="complaintDescription" data-translate="complaintDescription">Complaint Description:</label>
+            <textarea id="complaint" name="complaint" rows="4" required></textarea>
+
+            <label for="complaintImage" id="uploadImage" data-translate="uploadImage">Upload Image (optional):</label>
+            <input type="file" id="complaintImage" name="complaintImage" accept="image/*">
+            
+            <button type="submit" id="submitComplaint" data-translate="submitComplaint">Submit Complaint</button>
+        </form>
+    </div>
+
+    <hr><br>
+    <center><a href="{% url 'home' %}" class="home-button" id="home" data-translate="home">HOME</a></center><br><hr>
+
+    <footer class="footer">
+        <p id="footerText" data-translate="footerText">©2024 MITHUN KR, CSE, GEC HASSAN</p>
+        <p id="helpline" data-translate="helpline">Helpline: 139 (Toll-Free)</p>
+    </footer>
+
+</body>
+</html>

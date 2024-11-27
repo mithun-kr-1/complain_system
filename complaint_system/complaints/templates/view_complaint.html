@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaints view in Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://wallpapers.com/images/hd/3d-hd-geometrical-blocks-and-spheres-abstract-q1mmmug6kg94te8d.jpg'); /* Background */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* White transparency container */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0); /* White with transparency */
+            z-index: -1; /* Ensure the overlay is behind content */
+        }
+
+        .complaint-detail {
+            background-color: rgba(255, 255, 255, 0.8); /* Slight transparency */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-left: 1in; /* One inch gap from the left */
+            width: 400px;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 4px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .header-left img {
+            width: 50px;
+            height: auto;
+        }
+
+        .header-right a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .back-button, .home-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button:hover, .home-button:hover {
+            background-color: #0056b3;
+        }
+        .home-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            width: 540px;
+            padding: 12px;
+        }
+        
+        .home-button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 30px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="https://t3.ftcdn.net/jpg/05/20/68/54/360_F_520685437_FuWJXbq7SHOOMugB1grPu3oakwdB8FNW.jpg" 
+                alt="comp 1" 
+                style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        </div>
+        <div class="ind">
+        <h1 id="til">COMPLAINTS SYSTEM</h1>
+        </div>
+        <div class="header-right">
+            <img src="https://blog.ipleaders.in/wp-content/uploads/2016/08/before-you-file-a-complaint.jpg"
+            alt="comp 2" 
+                style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        </div>
+    </header>
+    <br>
+    <div class="complaint-detail">
+        <h2>Complaint Details</h2>
+        <div class="complaint-details">
+            <p><strong>Name:</strong> {{ complaint.name }}</p>
+            <p><strong>Email:</strong> {{ complaint.email }}</p>
+            <p><strong>Complaint:</strong> {{ complaint.complaint_text }}</p>
+            <p><strong>Sentiment:</strong> {{ complaint.sentiment }}</p>
+            <p><strong>Image Classification:</strong> {{ complaint.image_classification }}</p>
+            <p><strong>Date:</strong> {{ complaint.created_at }}</p>
+            <a href="{% url 'admin_dashboard' %}" class="back-button">Back to Dashboard</a>
+        </div>
+    </div>
+    <hr><br>
+    <center><a href="{% url 'home' %}" class="home-button">HOME</a></center><br><hr>
+    <footer class="footer">
+        <p id="footer-text">©2024 MITHUN KR, CSE, GEC HASSAN</p>
+        <p id="helpline">Helpline: 139 (Toll-Free)</p>
+    </footer>
+
+
+</body>
+</html>

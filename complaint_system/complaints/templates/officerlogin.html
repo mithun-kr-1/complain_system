@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Officer Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://w.wallhaven.cc/full/y8/wallhaven-y86w77.jpg'); /* Background i */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+        }
+        /*white transparency */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0); /* White with 50% transparency */
+            z-index: -1; /* Ensure the overlay is behind content */
+        }
+        header {
+            background-color: #fff;
+            padding: 4px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255,255,255, 0.6);    
+        }
+        .header-left img {
+            width: 50px;
+            height: auto;
+        }
+        .header-right a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+        .main-header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        /* Styling the login container */
+        .login-container {
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            background-color: rgba(255,255,255, 0.7); 
+            
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 500px;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .login-container button {
+            width: 540px;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 15px;
+            display: none;
+        }
+
+        /* Responsive design */
+        @media(max-width: 600px) {
+            .login-container {
+                padding: 20px;
+            }
+
+            .login-container h2 {
+                font-size: 1.5rem;
+            }
+        }
+        .home-button {
+            background-color: #007bff; /* Button background color */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px; /* Spacing on the right side */
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+           
+            width: 540px;
+            padding: 12px;
+        }
+        
+        .home-button:hover {
+            background-color: #0056b3; /* Darker background on hover */
+        }
+        .footer {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 30px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .right {
+            text-align: right;
+            margin-bottom: 1px;   
+        }
+        .lang-btn {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            color: #333;
+            padding: 8px 15px;
+            margin-left: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            width: 100px;
+        }
+        .lang-btn:hover {
+            background-color: #e0e0e0;
+        }
+        .lang-btn {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            color: #333;
+            padding: 8px 15px;
+            margin-left: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .lang-btn:hover {
+            background-color: #e0e0e0;
+        }
+        .lang-btn {
+            background-color: #4CAF50; /* Green background */
+            border: none;
+            color: white;
+            padding: 1px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.2s, background-color 0.3s; /* Smooth hover and click effects */
+          }
+          /* Hover effect */
+          .lang-btn:hover {
+            background-color: #333; /* Darker green on hover */
+            transform: scale(1.05); /* Slightly larger */
+          }
+          /* Click effect */
+          .lang-btn:active {
+            background-color: #333; /* Even darker green on click */
+            transform: scale(0.95); /* Slightly smaller on click */
+            box-shadow: 0 5px #666;
+          }
+          .right{
+            padding: -40px;
+          }
+    </style>
+  <script>
+
+     // Specified username and password for officers
+     const correctUsername = "officer1";
+     const correctPassword = "comp2024";
+
+     // Function to handle login process
+     function handleLogin(event) {
+         event.preventDefault(); // Prevent form from submitting the default way
+
+         // Get the entered username and password
+         const username = document.getElementById('username').value;
+         const password = document.getElementById('password').value;
+
+         // Check if credentials are correct
+         if (username === correctUsername && password === correctPassword) {
+             alert('Login Successful!...By officer');
+             window.location.href = "{% url 'admin_dashboard' %}";
+        } else {
+             // Show error message if credentials are incorrect
+             document.getElementById('errorMessage').style.display = 'block';
+         }
+     }
+
+     // Set up event listener on DOMContentLoaded
+     document.addEventListener('DOMContentLoaded', function() {
+         document.getElementById('loginForm').addEventListener('submit', handleLogin);
+     });
+
+
+    // Object holding translations for each language
+const translations = {
+    en: {
+        title: "COMPLAINTS SYSTEM",
+        loginTitle: "Officer Login",
+        usernamePlaceholder: "Username",
+        passwordPlaceholder: "Password",
+        loginButton: "Login",
+        errorMessage: "Invalid username or password.....!!!!!",
+        userInfo: "user: officer1, password: comp2024",
+        homeButton: "HOME",
+        footerText: "©2024 MITHUN KR, CSE, GEC HASSAN",
+        helpline: "Helpline: 139 (Toll-Free)"
+    },
+    ka: {
+        title: "ತಕಾರಾರ್ ವ್ಯವಸ್ಥೆ",
+        loginTitle: "ಅಧಿಕಾರಿ ಲಾಗಿನ್",
+        usernamePlaceholder: "ಬಳಕೆದಾರ ಹೆಸರು",
+        passwordPlaceholder: "ಪಾಸ್ವರ್ಡ್",
+        loginButton: "ಲಾಗಿನ್",
+        errorMessage: "ಅಮಾನ್ಯವಾದ ಬಳಕೆದಾರ ಹೆಸರು ಅಥವಾ ಪಾಸ್ವರ್ಡ್.....!!!!!",
+        userInfo: "ಬಳಕೆದಾರ: officer1, ಪಾಸ್ವರ್ಡ್: comp2024",
+        homeButton: "ಮನೆ",
+        footerText: "©2024 ಮಿಥುನ್ ಕೆಆರ್, ಸಿಎಸ್ಇ, ಜಿಇಸಿ ಹಾಸನ್",
+        helpline: "ಸಹಾಯವಾಣಿ: 139 (ಉಚಿತ)"
+    },
+    hi: {
+        title: "शिकायत प्रणाली",
+        loginTitle: "अधिकारी लॉगिन",
+        usernamePlaceholder: "उपयोगकर्ता नाम",
+        passwordPlaceholder: "पासवर्ड",
+        loginButton: "लॉगिन",
+        errorMessage: "अमान्य उपयोगकर्ता नाम या पासवर्ड.....!!!!!",
+        userInfo: "उपयोगकर्ता: officer1, पासवर्ड: comp2024",
+        homeButton: "मुख्य पृष्ठ",
+        footerText: "©2024 मितुन केआर, सीएसई, जीईसी हसन",
+        helpline: "हेल्पलाइन: 139 (टोल-फ्री)"
+    }
+};
+
+// Function to change the language of the webpage
+function changeLanguage(lang) {
+    document.getElementById('til').textContent = translations[lang].title;
+    document.querySelector('.login-container h2').textContent = translations[lang].loginTitle;
+    document.getElementById('username').placeholder = translations[lang].usernamePlaceholder;
+    document.getElementById('password').placeholder = translations[lang].passwordPlaceholder;
+    document.querySelector('.login-container button').textContent = translations[lang].loginButton;
+    document.getElementById('errorMessage').textContent = translations[lang].errorMessage;
+    document.querySelector('.login-container p').innerHTML = translations[lang].userInfo;
+    document.querySelector('.home-button').textContent = translations[lang].homeButton;
+    document.getElementById('footer-text').textContent = translations[lang].footerText;
+    document.getElementById('helpline').textContent = translations[lang].helpline;
+}
+
+  </script>
+</head>
+<body>
+    <div class="right">
+        <button class="lang-btn" onclick="changeLanguage('en')">English</button>
+        <button class="lang-btn" onclick="changeLanguage('ka')">ಕನ್ನಡ</button>
+        <button class="lang-btn" onclick="changeLanguage('hi')">हिन्दी</button>
+    </div>
+    <header>
+        <div class="header-left">
+            <img src="https://t3.ftcdn.net/jpg/05/20/68/54/360_F_520685437_FuWJXbq7SHOOMugB1grPu3oakwdB8FNW.jpg" 
+                alt="comp 1" 
+                style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        </div>
+        <div class="ind">
+        <h1 id="til">COMPLAINTS SYSTEM</h1>
+        </div>
+        <div class="header-right">
+            <img src="https://blog.ipleaders.in/wp-content/uploads/2016/08/before-you-file-a-complaint.jpg"
+            alt="comp 2" 
+                style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        </div>
+        
+    </header>
+
+    <section class="login-container">
+        <h2>Officer Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <p class="error-message" id="errorMessage">Invalid username or password.....!!!!!</p>
+            <br>
+            <center><p> user: officer1, password: comp2024</center>
+        </form>
+    </section>
+    <hr><br>
+    <center><a href="{% url 'home' %}" class="home-button"style=>HOME</a></center><br><hr>
+    <footer class="footer">
+        <p id="footer-text">©2024 MITHUN KR, CSE, GEC HASSAN</p>
+        <p id="helpline">Helpline: 139 (Toll-Free)</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedbacks</title>
+    <style>
+        /* Your existing styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://t4.ftcdn.net/jpg/06/43/02/37/360_F_643023776_0oYsYRRcooTNy7olrYmnrNMUiBBSqcRf.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0); /* White with 50% transparency */
+            z-index: -1;
+        }
+        header {
+            background-color: #fff;
+            padding: 4px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255,255,255, 0.6);    
+        }
+        .header-left img {
+            width: 50px;
+            height: auto;
+        }
+        .header-right a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+        .main-header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        .feedback-form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255,255,255, 0.7); 
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="tel"], input[type="email"], input[type="number"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .radio-group {
+            margin-bottom: 10px;
+        }
+        .radio-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        
+        @media (max-width: 600px) {
+            .header-left img {
+                width: 70px;
+                height: 70px;
+            }
+            .header-right img {
+                width: 140px;
+                height: auto;
+            }
+            input[type="text"], input[type="tel"], input[type="email"], input[type="number"] {
+                width: calc(100% - 18px);
+            }
+        }
+        .home-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            width: 540px;
+            padding: 12px;
+        }
+        
+        .home-button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 30px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .right {
+            text-align: right;
+            margin-bottom: 1px;   
+        }
+        .lang-btn {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            color: #333;
+            padding: 8px 15px;
+            margin-left: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            width: 100px;
+        }
+        .lang-btn:hover {
+            background-color: #e0e0e0;
+        }
+        .lang-btn {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            color: #333;
+            padding: 8px 15px;
+            margin-left: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .lang-btn:hover {
+            background-color: #e0e0e0;
+        }
+        .lang-btn {
+            background-color: #4CAF50; /* Green background */
+            border: none;
+            color: white;
+            padding: 1px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.2s, background-color 0.3s; /* Smooth hover and click effects */
+          }
+          /* Hover effect */
+          .lang-btn:hover {
+            background-color: #333; /* Darker green on hover */
+            transform: scale(1.05); /* Slightly larger */
+          }
+          /* Click effect */
+          .lang-btn:active {
+            background-color: #333; /* Even darker green on click */
+            transform: scale(0.95); /* Slightly smaller on click */
+            box-shadow: 0 5px #666;
+          }
+          .right{
+            padding: -40px;
+          }
+    </style>
+    <script>
+        function showThankYouMessage() {
+            alert('Thank you for your feedback..!');
+        }
+
+            // Define translations for English, Kannada, and Hindi
+            const translations = {
+                en: {
+                    title: "COMPLAINTS SYSTEM",
+                    feedbackForm: "Feedback Form",
+                    name: "Name:",
+                    email: "Email:",
+                    location: "Location:",
+                    rateUs: "Rate Us (1-10):",
+                    feedbackQuality: "Feedback Quality:",
+                    poor: "Poor",
+                    good: "Good",
+                    excellent: "Excellent",
+                    submit: "Submit",
+                    home: "HOME",
+                    footerText: "©2024 MITHUN KR, CSE, GEC HASSAN",
+                    helpline: "Helpline: 139 (Toll-Free)"
+                },
+                ka: {
+                    title: "ತಕಾರಾರ್ ವ್ಯವಸ್ಥೆ",
+                    feedbackForm: "ಪ್ರತಿಕ್ರಿಯೆ ಫಾರ್ಮ್",
+                    name: "ಹೆಸರು:",
+                    email: "ಇಮೇಲ್:",
+                    location: "ಸ್ಥಳ:",
+                    rateUs: "ನಮಗೆ ಅಂಕೆಗಳು (1-10):",
+                    feedbackQuality: "ಪ್ರತಿಕ್ರಿಯೆ ಗುಣಮಟ್ಟ:",
+                    poor: "ಕೀಳು",
+                    good: "ಚೆನ್ನಾಗಿದೆ",
+                    excellent: "ಅತ್ಯುತ್ತಮ",
+                    submit: "ಸಲ್ಲಿಸು",
+                    home: "ಮನೆ",
+                    footerText: "©2024 ಮಿಥುನ್ ಕೆಆರ್, ಸಿಎಸ್‌ಇ, ಜಿಇಸಿ ಹಾಸನ",
+                    helpline: "ಸಹಾಯವಾಣಿ: 139 (ಟೋಲ್-ಫ್ರೀ)"
+                },
+                hi: {
+                    title: "शिकायत प्रणाली",
+                    feedbackForm: "प्रतिपुष्टि फॉर्म",
+                    name: "नाम:",
+                    email: "ईमेल:",
+                    location: "स्थान:",
+                    rateUs: "हमें रेट करें (1-10):",
+                    feedbackQuality: "प्रतिक्रिया गुणवत्ता:",
+                    poor: "खराब",
+                    good: "अच्छा",
+                    excellent: "उत्कृष्ट",
+                    submit: "जमा करें",
+                    home: "होम",
+                    footerText: "©2024 मिथुन केआर, सीएसई, जीईसी हसन",
+                    helpline: "हेल्पलाइन: 139 (टोल-फ्री)"
+                }
+            };
+        
+            // Function to change the language
+            function changeLanguage(lang) {
+                document.getElementById("til").textContent = translations[lang].title;
+                document.querySelector("h2").textContent = translations[lang].feedbackForm;
+                document.querySelector("label[for='name']").textContent = translations[lang].name;
+                document.querySelector("label[for='email']").textContent = translations[lang].email;
+                document.querySelector("label[for='location']").textContent = translations[lang].location;
+                document.querySelector(".rating-label").textContent = translations[lang].rateUs;
+                document.querySelector("label[for='poor']").textContent = translations[lang].poor;
+                document.querySelector("label[for='good']").textContent = translations[lang].good;
+                document.querySelector("label[for='excellent']").textContent = translations[lang].excellent;
+                document.querySelector("input[type='submit']").value = translations[lang].submit;
+                document.querySelector(".home-button").textContent = translations[lang].home;
+                document.getElementById("footer-text").textContent = translations[lang].footerText;
+                document.getElementById("helpline").textContent = translations[lang].helpline;
+            }
+    </script>
+</head>
+<body>
+    <div class="right">
+        <button class="lang-btn" onclick="changeLanguage('en')">English</button>
+        <button class="lang-btn" onclick="changeLanguage('ka')">ಕನ್ನಡ</button>
+        <button class="lang-btn" onclick="changeLanguage('hi')">हिन्दी</button>
+    </div>
+    <header>
+        <div class="header-left">
+            <img src="https://t3.ftcdn.net/jpg/05/20/68/54/360_F_520685437_FuWJXbq7SHOOMugB1grPu3oakwdB8FNW.jpg" 
+                alt="comp 1" 
+                style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        </div>
+        <div class="ind">
+        <h1 id="til">COMPLAINTS SYSTEM</h1>
+        </div>
+        <div class="header-right">
+            <img src="https://blog.ipleaders.in/wp-content/uploads/2016/08/before-you-file-a-complaint.jpg"
+            alt="comp 2" 
+                style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        </div>
+    </header>
+
+    <div class="feedback-form">
+        <center><h2>Feedback Form</h2></center>
+        <form action="{% url 'feedback_form' %}" method="POST" onsubmit="showThankYouMessage()">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Your email ID" required>
+
+            <label for="phone">Phone:</label>
+            <input type="number" id="phone" name="phone" placeholder="Your Phone Number" required>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" placeholder="Your location" required>
+
+            <label class="rating-label">Rate Us (1-10):</label>
+            <input type="number" id="rating" name="rating" min="1" max="10" required>
+
+            <label class="rating-label">Feedback Quality:</label>
+            <div class="radio-group">
+                <label for="poor">
+                    <input type="radio" id="poor" name="feedback" value="poor" required> Poor
+                </label>
+                <label for="good">
+                    <input type="radio" id="good" name="feedback" value="good" required> Good
+                </label>
+                <label for="excellent">
+                    <input type="radio" id="excellent" name="feedback" value="excellent" required> Excellent
+                </label>
+            </div>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <hr><br>
+    <center><a href="{% url 'home' %}" class="home-button">HOME</a></center><br><hr>
+    <footer class="footer">
+        <p id="footer-text">©2024 MITHUN KR, CSE, GEC HASSAN</p>
+        <p id="helpline">Helpline: 139 (Toll-Free)</p>
+    </footer>
+
+
+</body>
+</html>
